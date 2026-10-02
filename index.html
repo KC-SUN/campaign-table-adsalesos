@@ -1347,7 +1347,12 @@
 <script>
 (function(){
   var GATE_PASSWORD = "campaigntable2026";
-  var GATE_UNLOCKED_KEY = "campaign_table_gate_unlocked_v1";
+  // Scoped to this variant: both prototypes are published under the same
+  // github.io origin (different repo = different path, not different
+  // origin), and localStorage is shared per-origin regardless of path — a
+  // shared key here would mean unlocking one prototype silently unlocks
+  // the other. Each variant gets its own key so they stay independent.
+  var GATE_UNLOCKED_KEY = "campaign_table_gate_unlocked_adsalesos_v1";
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Email capture: every unlock attempt with a valid-looking email posts to
